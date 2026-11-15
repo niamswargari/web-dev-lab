@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Dynamic </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <title>Form Validation test Experiment 8</title>
+</head>
+    <body>
+        <form onsubmit="return validateForm()">
+            <label for="txtInput">Please enter your name to continue:</label><br>
+            <input type="text" id="name" onfocus="myfocus(this)" onchange="upperCase()" placeholder="Type your name"><br><br>
+            <input type="submit" value="Submit">
+        </form>
+        <script>
+            function myfocus(x){
+                x.style.background = "yellow";
+            }
+            function upperCase(){
+                const x = document.getElementById("name");
+                x.value = x.value.toUpperCase();
+            }
+            function validateForm() {
+                let name = document.getElementById('name').value;
+                if (name === "") {
+                    alert("Name cannot be empty");
+                    return false;
+                }
+                return true;
+            }SS
+        </script>
+    </body>
+</html>

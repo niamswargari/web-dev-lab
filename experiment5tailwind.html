@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Experiment 5: Tailwind Navigation Bar</title>
+<!-- Tailwind via CDN (needs internet) -->
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="m-0 font-sans">
+
+<!-- Navbar: flex, space-between, stacks on small screens (max-sm) -->
+<nav class="flex justify-between items-center bg-gray-800 px-5 py-3 max-sm:flex-col max-sm:gap-2.5">
+  <div class="text-white text-2xl font-bold">MySite</div>
+  <ul class="flex gap-5 list-none m-0 p-0 max-sm:flex-col max-sm:items-center max-sm:gap-2">
+    <li><a href="#" class="text-gray-300 no-underline hover:text-white hover:border-b-2 hover:border-white">Home</a></li>
+    <li><a href="#" class="text-gray-300 no-underline hover:text-white hover:border-b-2 hover:border-white">About</a></li>
+    <li><a href="#" class="text-gray-300 no-underline hover:text-white hover:border-b-2 hover:border-white">Services</a></li>
+    <li><a href="#" class="text-gray-300 no-underline hover:text-white hover:border-b-2 hover:border-white">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Grid: 1 column on mobile, 2 on md, 3 on lg -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 m-5">
+  <div class="bg-gray-100 p-5 rounded-lg">Card 1</div>
+  <div class="bg-gray-100 p-5 rounded-lg">Card 2</div>
+  <div class="bg-gray-100 p-5 rounded-lg">Card 3</div>
+</div>
+
+</body>
+</html>

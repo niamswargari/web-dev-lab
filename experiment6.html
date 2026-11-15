@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Experiment 6: JavaScript Fundamentals</title>
+</head>
+<body>
+
+<h2>Experiment 6: JavaScript Fundamentals</h2>
+<button onclick="vars()">Variables</button>
+<button onclick="str()">String</button>
+<button onclick="arr()">Array</button>
+<button onclick="dt()">Date</button>
+<br><br>
+Number: <input type="number" id="n">
+<button onclick="fact()">Factorial</button>
+<p id="out"></p>
+
+<script>
+var out = document.getElementById("out");
+
+// 1. Variables and operators
+function vars() {
+  var a = 10;       // var
+  let b = 3;        // let
+  const c = 2;      // const
+  out.innerHTML = "a+b = " + (a + b) + "<br>a%b = " + (a % b) +
+                  "<br>a>b is " + (a > b) + "<br>a*c = " + (a * c);
+}
+
+// 2. String, array, Date
+function str() {
+  var s = "Hello JavaScript";
+  out.innerHTML = s.length + "<br>" + s.toUpperCase() + "<br>" + s.substring(0, 5);
+}
+
+function arr() {
+  var f = ["Apple", "Banana", "Mango"];
+  f.push("Orange");
+  f.pop();
+  out.innerHTML = f.join(", ") + "<br>Length: " + f.length + "<br>Sorted: " + f.sort().reverse();
+}
+
+function dt() {
+  var d = new Date();
+  out.innerHTML = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear() +
+                  "<br>" + d.getHours() + ":" + d.getMinutes();
+}
+
+// 3. Function with parameter and return value
+function factorial(n) {
+  var f = 1;
+  for (var i = 1; i <= n; i++) f *= i;
+  return f;
+}
+
+function fact() {
+  var n = Number(document.getElementById("n").value);
+  out.innerHTML = "Factorial of " + n + " = " + factorial(n);
+}
+</script>
+
+</body>
+</html>

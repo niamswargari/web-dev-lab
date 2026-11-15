@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Experiment 4: CSS Box Model and Positioning</title>
+<style>
+  /* 1. Margin, padding, border */
+  .box {
+    width: 200px;
+    padding: 20px;
+    border: 5px solid blue;
+    margin: 30px;
+    background: lightblue;
+  }
+
+  /* z-index: needs position to work. Higher number is on top */
+  .stack { position: relative; height: 120px; }
+  .s1, .s2 { position: absolute; width: 100px; height: 100px; }
+  .s1 { background: red; top: 0; left: 0; z-index: 1; }
+  .s2 { background: green; top: 30px; left: 30px; z-index: 2; }
+
+  /* 2. Overflow */
+  .scroll { width: 200px; height: 60px; border: 1px solid black; overflow: scroll; }
+  .hidden { width: 200px; height: 40px; border: 1px solid black; overflow: hidden; }
+
+  /* Float layout */
+  .wrap { border: 1px solid gray; overflow: auto; }  /* clears the floats */
+  .left { float: left; width: 30%; background: orange; }
+  .right { float: right; width: 65%; background: yellow; }
+
+  /* Alignment */
+  .center { width: 200px; margin: 0 auto; background: pink; text-align: center; }
+</style>
+</head>
+<body>
+
+<h3>1. Margin, padding, border</h3>
+<div class="box">Content area</div>
+
+<h3>z-index (green is above red)</h3>
+<div class="stack">
+  <div class="s1">z-index 1</div>
+  <div class="s2">z-index 2</div>
+</div>
+
+<h3>2. Overflow: scroll and hidden</h3>
+<div class="scroll">This is a long text that does not fit inside the small box, so a scrollbar appears. Keep adding more words here to test it.</div>
+<br>
+<div class="hidden">This long text is cut off because overflow is hidden and the box is small.</div>
+
+<h3>Float layout</h3>
+<div class="wrap">
+  <div class="left">Left (float: left)</div>
+  <div class="right">Right (float: right)</div>
+</div>
+
+<h3>Alignment</h3>
+<div class="center">Centered with margin: 0 auto</div>
+
+</body>
+</html>

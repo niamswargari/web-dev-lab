@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Experiment 5: CSS Selectors and Navigation Bar</title>
+<style>
+  body { margin: 0; font-family: Arial, sans-serif; }
+
+  /* ===== Part 1: Combinators and specificity ===== */
+
+  /* Descendant combinator (space): any <p> inside .demo */
+  .demo p { color: blue; }
+
+  /* Child combinator (>): only <p> directly inside .demo */
+  .demo > p { font-weight: bold; }
+
+  /* Adjacent sibling (+): the <p> right after an <h3> */
+  h3 + p { background: #fff3b0; }
+
+  /* General sibling (~): all <span> after the <h3> */
+  h3 ~ span { color: green; }
+
+  /* Specificity: element < class < id */
+  p { color: black; }              /* specificity 0-0-1 */
+  .note { color: orange; }         /* specificity 0-1-0 */
+  #special { color: purple; }      /* specificity 1-0-0 (wins over class) */
+
+  /* !important overrides normal specificity */
+  .force { color: red !important; }
+
+  .demo { padding: 10px 20px; border: 1px solid #ccc; margin: 20px; }
+
+  /* ===== Part 2: Responsive navbar (Flexbox) ===== */
+  .navbar {
+    display: flex;
+    justify-content: space-between;   /* logo left, links right */
+    align-items: center;
+    background: #1f2937;
+    padding: 12px 20px;
+  }
+  .logo { color: white; font-size: 22px; font-weight: bold; }
+  .nav-links { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; }
+  .nav-links a { color: #d1d5db; text-decoration: none; }
+  .nav-links a:hover { color: white; border-bottom: 2px solid white; }
+
+  /* ===== Grid layout for cards ===== */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);   /* 3 columns on large screens */
+    gap: 16px;
+    margin: 20px;
+  }
+  .card { background: #f3f4f6; padding: 20px; border-radius: 8px; }
+
+  /* ===== Media queries ===== */
+  @media (max-width: 768px) {
+    .cards { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 500px) {
+    .navbar { flex-direction: column; gap: 10px; }   /* stack navbar */
+    .nav-links { flex-direction: column; align-items: center; gap: 8px; }
+    .cards { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="logo">MySite</div>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Combinators and specificity demo -->
+<div class="demo">
+  <h3>Combinators</h3>
+  <p>Paragraph right after h3 (adjacent sibling, child, descendant).</p>
+  <span>Span after h3 (general sibling).</span>
+  <div><p>Nested paragraph (descendant only, not child).</p></div>
+
+  <h3>Specificity</h3>
+  <p>Normal paragraph (black).</p>
+  <p class="note">Class selector beats element selector (orange).</p>
+  <p class="note" id="special">ID beats class (purple).</p>
+  <p class="note" id="special" style="color: brown;">Inline style beats ID, but not !important.</p>
+  <p id="special" class="force">!important beats everything (red).</p>
+</div>
+
+<!-- Grid cards -->
+<div class="cards">
+  <div class="card">Card 1</div>
+  <div class="card">Card 2</div>
+  <div class="card">Card 3</div>
+</div>
+
+</body>
+</html>

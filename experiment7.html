@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Experiment 7: DOM Manipulation</title>
+</head>
+<body>
+
+<h1 id="heading">DOM Manipulation</h1>
+<p id="para">This is a paragraph.</p>
+
+<h3>Student Form</h3>
+Name: <input type="text" id="name"><br><br>
+Course:
+<select id="course">
+  <option>CSE</option>
+  <option>IT</option>
+  <option>AI</option>
+</select><br><br>
+<button onclick="showForm()">This button shows the form details</button>
+<button onclick="clearForm()">This button clears the form</button>
+<p id="output"></p>
+
+<h3>Change Content and Style</h3>
+<button onclick="changeText()">This button changes text</button>
+<button onclick="changeColor()">This button changes color</button>
+<button onclick="addItem()">This button adds a list item</button>
+<ul id="list"></ul>
+
+<h3>JavaScript Object</h3>
+<button onclick="showStudent()">This button shows the student object</button>
+<p id="objOutput"></p>
+
+<script>
+function showForm() {
+  var name = document.getElementById("name").value;      
+  var course = document.getElementById("course").value;
+  document.getElementById("output").innerHTML =
+    "Name: " + name + "<br>Course: " + course;           
+}
+
+function clearForm() {
+  document.getElementById("name").value = "";            
+  document.getElementById("output").innerHTML = "";
+}
+
+function changeText() {
+  document.getElementById("heading").innerHTML = "This is the new heading text";
+}
+
+function changeColor() {
+  document.getElementById("para").style.color = "red";
+  document.getElementById("para").style.fontSize = "30px";
+}
+
+function addItem() {
+  var li = document.createElement("li");                 
+  li.innerHTML = "New item";
+  document.getElementById("list").appendChild(li);       
+}
+
+var student = {
+  name: "Niam",
+  roll: 2481281,
+  marks: 99,
+  display: function () {
+    return this.name + " (Roll " + this.roll + ") scored " + this.marks;
+  }
+};
+
+function showStudent() {
+  document.getElementById("objOutput").innerHTML = student.display();
+}
+</script>
+
+</body>
+</html>

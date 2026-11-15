@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Experiment 9: JSON and Fetch API</title>
+</head>
+<body>
+
+<h2>1. JSON parse and stringify</h2>
+<button onclick="jsonDemo()">Run JSON Demo</button>
+<pre id="jsonOut"></pre>
+
+<h2>2. Fetch data from REST API</h2>
+<button onclick="loadUsers()">Load Users</button>
+<button onclick="loadBad()">Test Error</button>
+<p id="status"></p>
+<ul id="list"></ul>
+
+<script>
+// ---------- 1. JSON ----------
+function jsonDemo() {
+  // JSON string: object with array and nested object
+  var text = '{"name":"Niam","age":25,"skills":["HTML","JS"],"address":{"city":"Gurugram","state":"Haryana"}}';
+
+  var obj = JSON.parse(text);
+  var back = JSON.stringify(obj);
+
+  document.getElementById("jsonOut").textContent =
+    "Name: " + obj.name + "\n" +
+    "Second skill: " + obj.skills[1] + "\n" +
+    "City: " + obj.address.city + "\n" +
+    "State: " + obj.address.state + "\n\n" +
+    "Stringified: " + back;
+}
+
+async function getData(url) {
+  var status = document.getElementById("status");
+  var list = document.getElementById("list");
+  list.innerHTML = "";
+  status.textContent = "Loading...";
+
+  try {
+    var response = await fetch(url);
+    if (!response.ok) throw new Error("HTTP error " + response.status);
+    var data = await response.json();
+
+    data.forEach(function (user) {                    
+      var li = document.createElement("li");
+      li.textContent = user.name + " (" + user.email + ")";
+      list.appendChild(li);
+    });
+    status.textContent = "Loaded " + data.length + " users.";
+  } catch (error) {
+    status.textContent = "Error: " + error.message;
+  }
+}
+
+function loadUsers() { getData("https://jsonplaceholder.typicode.com/users"); }
+function loadBad()   { getData("https://jsonplaceholder.typicode.com/wrongpage"); }
+</script>
+
+</body>
+</html>
