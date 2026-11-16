@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Experiment 5: Navbar (Tailwind)</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="font-sans">
+<nav class="flex flex-wrap items-center justify-between bg-slate-900 px-4 py-3 text-slate-200">
+  <a href="#" class="font-bold text-sky-400">Brand</a>
+  <input type="checkbox" id="t" class="peer hidden">
+  <label for="t" class="md:hidden">&#9776;</label>
+  <ul class="hidden w-full flex-col peer-checked:flex md:flex md:w-auto md:flex-row md:gap-6">
+    <li><a href="#" class="block border-t border-white/10 py-3 hover:text-sky-400 md:border-0 md:p-0">Home</a></li>
+    <li><a href="#" class="block border-t border-white/10 py-3 hover:text-sky-400 md:border-0 md:p-0">Features</a></li>
+    <li><a href="#" class="block border-t border-white/10 py-3 hover:text-sky-400 md:border-0 md:p-0">Pricing</a></li>
+    <li><a href="#" class="block border-t border-white/10 py-3 hover:text-sky-400 md:border-0 md:p-0">About</a></li>
+  </ul>
+</nav>
+<main class="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 lg:grid-cols-3">
+  <article class="rounded-lg border p-4">One</article><article class="rounded-lg border p-4">Two</article>
+  <article class="rounded-lg border p-4">Three</article><article class="rounded-lg border p-4">Four</article>
+  <article class="rounded-lg border p-4">Five</article><article class="rounded-lg border p-4">Six</article>
+</main>
+</body>
+</html>

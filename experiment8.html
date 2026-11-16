@@ -1,36 +1,76 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Dynamic </title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-        <title>Form Validation test Experiment 8</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Experiment 8: Form Validation</title>
+<style>
+  .err { color: red }
+</style>
 </head>
-    <body>
-        <form onsubmit="return validateForm()">
-            <label for="txtInput">Please enter your name to continue:</label><br>
-            <input type="text" id="name" onfocus="myfocus(this)" onchange="upperCase()" placeholder="Type your name"><br><br>
-            <input type="submit" value="Submit">
-        </form>
-        <script>
-            function myfocus(x){
-                x.style.background = "yellow";
-            }
-            function upperCase(){
-                const x = document.getElementById("name");
-                x.value = x.value.toUpperCase();
-            }
-            function validateForm() {
-                let name = document.getElementById('name').value;
-                if (name === "") {
-                    alert("Name cannot be empty");
-                    return false;
-                }
-                return true;
-            }SS
-        </script>
-    </body>
+<body>
+<h2>Registration Form</h2>
+ 
+<form id="form" onsubmit="return validateForm()">
+  <fieldset id="group">
+    <legend>Details</legend>
+    Name: <input type="text" id="name"><br><br>
+    Email: <input type="text" id="email"><br><br>
+    Password: <input type="password" id="password"><br><br>
+  </fieldset>
+ 
+  <fieldset>
+    <legend>Phone numbers</legend>
+    <div id="phones"><input type="text" class="phone" placeholder="10 digits"></div>
+    <button type="button" id="add">Add phone</button>
+  </fieldset>
+ 
+  <p class="err" id="error"></p>
+  <input type="submit" value="Submit">
+</form>
+ 
+<script>
+// 1. onsubmit: check all fields, return false to stop submission
+function validateForm() {
+  let name = document.getElementById("name").value;
+  let email = document.getElementById("email").value;
+  let password = document.getElementById("password").value;
+  let phones = document.querySelectorAll(".phone");
+  let error = document.getElementById("error");
+ 
+  if (name === "") { error.innerText = "Name cannot be empty"; return false; }
+  if (!email.includes("@") || !email.includes(".")) { error.innerText = "Enter a valid email"; return false; }
+  if (password.length < 8) { error.innerText = "Password must be at least 8 characters"; return false; }
+  for (let p of phones) {
+    if (p.value.length !== 10 || isNaN(p.value)) { error.innerText = "Phone must be 10 digits"; return false; }
+  }
+ 
+  error.innerText = "";
+  alert("Form submitted successfully!");
+  return true;
+}
+ 
+// 2. onfocus / onchange on the grouped fields (focusin bubbles, focus does not)
+let group = document.getElementById("group");
+group.addEventListener("focusin", function (e) { e.target.style.background = "yellow"; });
+group.addEventListener("focusout", function (e) { e.target.style.background = ""; });
+group.onchange = function (e) {
+  if (e.target.id === "name") e.target.value = e.target.value.toUpperCase();
+};
+ 
+// 3. Event delegation: one listener on #phones handles current AND future inputs
+document.getElementById("add").onclick = function () {
+  let input = document.createElement("input");
+  input.type = "text";
+  input.className = "phone";
+  input.placeholder = "10 digits";
+  document.getElementById("phones").appendChild(input);
+};
+let phones = document.getElementById("phones");
+phones.addEventListener("focusin", function (e) { e.target.style.background = "yellow"; });
+phones.addEventListener("focusout", function (e) { e.target.style.background = ""; });
+</script>
+</body>
 </html>
+ 

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Experiment 10: Vanilla JS version</title>
+</head>
+<body>
+
+<h2>Student List (Vanilla JS + Node API)</h2>
+Search: <input type="text" id="search" oninput="showStudents()">
+<div id="list">Loading...</div>
+<p id="count"></p>
+
+<script>
+var students = [];                       // we keep the data in a variable ourselves
+
+function showStudents() {                // we must call this ourselves after every change
+  var text = document.getElementById("search").value.toLowerCase();
+  var list = document.getElementById("list");
+  var count = 0;
+  list.innerHTML = "";                   // clear the old list, then rebuild it
+  for (var i = 0; i < students.length; i++) {
+    var s = students[i];
+    if (s.name.toLowerCase().indexOf(text) !== -1) {
+      var div = document.createElement("div");
+      div.style.border = "1px solid #ccc";
+      div.style.padding = "10px";
+      div.style.margin = "8px";
+      div.innerHTML = "<h3>" + s.name + "</h3>Branch: " + s.branch + " | CGPA: " + s.cgpa;
+      list.appendChild(div);
+      count++;
+    }
+  }
+  document.getElementById("count").innerHTML = "Showing " + count + " of " + students.length;
+}
+
+fetch("http://localhost:5000/api/students")
+  .then(function (res) { return res.json(); })
+  .then(function (data) { students = data; showStudents(); })
+  .catch(function (err) { document.getElementById("list").innerHTML = "Error: " + err.message; });
+</script>
+
+</body>
+</html>

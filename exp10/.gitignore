@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+jspm_packages/
+bower_components/
+
+# Environment variables & secrets
+.env
+.env.local
+.env.*.local
+.env.test
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Build outputs & caches
+dist/
+build/
+.next/
+.nuxt/
+.parcel-cache/
+*.tsbuildinfo
+.npm
+.eslintcache
+.stylelintcache
+.node_repl_history
+
+# Test coverage & runtime data
+coverage/
+*.lcov
+.nyc_output
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

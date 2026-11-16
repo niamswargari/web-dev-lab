@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Experiment 5: Navbar (CSS)</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0 }
+  body { font-family: system-ui, sans-serif }
+
+  /* Navbar: Flexbox */
+  nav { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+        padding: .75rem 1rem; background: #0f172a; color: #e2e8f0 }
+  nav a { color: inherit; text-decoration: none }
+  nav a:hover { color: #38bdf8 }
+  .brand { font-weight: 700; color: #38bdf8 }
+  ul { display: none; flex-direction: column; width: 100%; list-style: none }
+  li a { display: block; padding: .75rem 0; border-top: 1px solid #fff2 }
+  #t { display: none }
+  #t:checked ~ ul { display: flex }               /* mobile toggle, no JS */
+
+  @media (min-width: 768px) {
+    label { display: none }
+    ul { display: flex; flex-direction: row; width: auto; gap: 1.5rem }
+    li a { border: 0; padding: 0 }
+  }
+
+  /* Cards: Grid */
+  main { display: grid; gap: 1rem; padding: 1rem; grid-template-columns: 1fr }
+  article { border: 1px solid #ddd; border-radius: 8px; padding: 1rem }
+  @media (min-width: 640px)  { main { grid-template-columns: repeat(2, 1fr) } }
+  @media (min-width: 1024px) { main { grid-template-columns: repeat(3, 1fr) } }
+</style>
+</head>
+<body>
+<nav>
+  <a class="brand" href="#">Brand</a>
+  <input type="checkbox" id="t"><label for="t">&#9776;</label>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Features</a></li>
+    <li><a href="#">Pricing</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+</nav>
+<main>
+  <article>One</article><article>Two</article><article>Three</article>
+  <article>Four</article><article>Five</article><article>Six</article>
+</main>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Experiment 5: Combinators & Specificity</title>
+<style>
+  /* Combinators */
+  .a p      { color: blue }                      /* descendant: any nested p */
+  .b > p    { background: #fef3c7 }              /* child: direct p only */
+  .c h3 + p { font-weight: bold }                /* adjacent: p right after h3 */
+  .d h3 ~ p { border-left: 4px solid pink }      /* general: all p after h3 */
+
+  /* Specificity: ID > class > element; ties go to the last rule */
+  p          { color: gray }                     /* 0,0,0,1 */
+  p.note     { color: orange }                   /* 0,0,1,1 */
+  #special   { color: crimson }                  /* 0,1,0,0 beats any classes */
+  .tie       { color: teal }
+  .tie       { color: darkgreen }                /* later wins */
+
+  /* !important beats inline styles */
+  .imp       { color: black !important }
+</style>
+</head>
+<body>
+<div class="a"><p>Descendant</p><div><p>Nested (also blue)</p></div></div>
+<div class="b"><p>Child (yellow)</p><div><p>Not matched</p></div></div>
+<div class="c"><h3>H3</h3><p>Adjacent (bold)</p><p>Not matched</p></div>
+<div class="d"><p>Before h3</p><h3>H3</h3><p>Sibling</p><p>Sibling</p></div>
+<p class="note">class beats element</p>
+<p id="special" class="note">ID beats class</p>
+<p class="tie">Tie: last rule wins</p>
+<p class="imp" style="color:red">!important beats inline</p>
+</body>
+</html>
